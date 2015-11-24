@@ -1,0 +1,73 @@
+@import url("http://fonts.googleapis.com/css?family=Roboto:300");
+@import "elements.less";
+
+@buttonWidth: 16px;
+@backgroundColor: #FFF;
+@buttonColor: #795548;
+@animationDuration: .25s;
+
+.play-button {
+	height: @buttonWidth;
+	width: @buttonWidth;
+	display: block;
+	margin: 30px auto;
+	overflow: hidden;
+	position: relative;
+
+	& > .left {
+		height: 100%;
+		float: left;
+		.gradient(@buttonColor, darken(@buttonColor, 10%), @buttonColor);
+		width: 36%;
+		-webkit-transition: all @animationDuration ease;
+		transition: all @animationDuration ease;
+		overflow: hidden;
+	}
+
+	& > .triangle-1 {
+	    transform: translate(0, -100%);
+	}
+
+	& > .triangle-2 {
+		transform: translate(0, 100%);
+	}
+
+	& > .triangle-1, & > .triangle-2 {
+		position: absolute;
+		top: 0;
+		right: 0;
+		background-color: transparent;
+		width: 0;
+		height: 0;
+		border-right: @buttonWidth solid @backgroundColor;
+		border-top: @buttonWidth / 2 solid transparent;
+		border-bottom: @buttonWidth / 2 solid transparent;
+		transition: transform @animationDuration ease;
+	}
+
+	& > .right {
+		height: 100%;
+		float: right;
+		width: 36%;
+		.gradient(@buttonColor, darken(@buttonColor, 10%), @buttonColor);
+		transition: all @animationDuration ease;
+	}
+
+	&.paused {
+		& .left {
+			width: 50%;
+		}
+
+		& .right {
+			width: 50%;
+		}
+
+		& .triangle-1 {
+			transform: translate(0, -50%);
+		}
+
+		& .triangle-2 {
+			transform: translate(0, 50%);
+		}
+	}
+}
